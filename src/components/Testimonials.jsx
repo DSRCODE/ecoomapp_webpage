@@ -74,7 +74,7 @@ const renderStars = (rating) => (
       i < rating ? (
         <FaStar key={i} className="text-yellow-400" />
       ) : (
-        <FaRegStar key={i} className="text-gray-400 dark:text-gray-500" />
+        <FaRegStar key={i} className="text-gray-400 " />
       )
     )}
   </div>
@@ -82,7 +82,7 @@ const renderStars = (rating) => (
 
 export default function Testimonials() {
   return (
-    <section className="py-20 px-6 bg-gradient-to-br from-[#f0f5ff] to-[#eaf1ff] text-gray-800 dark:text-white">
+    <section className="py-20 px-6 bg-gradient-to-br from-[#f0f5ff] to-[#eaf1ff] text-gray-800 ">
       <div className="max-w-6xl mx-auto text-center">
         <motion.h2
           initial={{ opacity: 0, y: 30 }}
@@ -93,7 +93,7 @@ export default function Testimonials() {
         >
           ⭐ What Our Users Say
         </motion.h2>
-        <p className="text-lg mb-12 text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+        <p className="text-lg mb-12 text-gray-600  max-w-3xl mx-auto">
           Real stories from vendors, customers, and delivery partners using our
           platform every day.
         </p>
@@ -112,9 +112,7 @@ export default function Testimonials() {
                 <div
                   className={`rounded-xl shadow-lg p-6 text-center h-full mx-4 ${bg}`}
                 >
-                  <p className="text-gray-800 dark:text-white italic mb-4">
-                    “{t.message}”
-                  </p>
+                  <p className="text-gray-800  italic mb-4">“{t.message}”</p>
                   {renderStars(t.rating)}
                   <h4 className="text-lg font-semibold mt-4 text-[#012A56]">
                     {t.name}

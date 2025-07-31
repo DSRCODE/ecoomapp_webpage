@@ -9,7 +9,7 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-10">
         {/* Brand Info */}
         <div>
-          <h2 className="text-2xl font-bold tracking-wide text-[#7C3AED] mb-3">
+          <h2 className="text-2xl font-bold tracking-wide text-[#fff] mb-3">
             E-commWebpage
           </h2>
           <p className="text-sm text-gray-400 mb-4 leading-relaxed">
