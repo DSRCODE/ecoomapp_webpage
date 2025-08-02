@@ -1,61 +1,77 @@
-import { motion } from "framer-motion";
-import { FaStore, FaShoppingBag, FaMotorcycle } from "react-icons/fa";
+import { useEffect, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
-const Hero = ({ showVendorModal, showCustomerModal, showDeliveryModal }) => {
+const roles = [
+  {
+    key: "vendor",
+    title: "Empowering Vendors",
+    subtitle: "Expand your business digitally.",
+    description:
+      "Our platform helps vendors reach more customers, manage their inventory effortlessly, and grow their business using cutting-edge tools. Accept orders, track performance, and scale with ease — all in one place.",
+    bg: "url('https://ntspl.co.in/blog/wp-content/uploads/2021/03/multivender-ecommerce-marketplace.jpg')",
+  },
+  {
+    key: "customer",
+    title: "Delighting Customers",
+    subtitle: "A seamless shopping experience.",
+    description:
+      "Enjoy a wide variety of products with smooth navigation, smart search, and secure payments. Track orders in real-time and get support when needed — your satisfaction is our priority.",
+    bg: "url('https://knowmax-ai-website.s3.amazonaws.com/wp-content/uploads/2024/09/12133025/Ecommerce-customer-service.webp')",
+  },
+  {
+    key: "delivery",
+    title: "Supporting Delivery Heroes",
+    subtitle: "Delivering dreams, one ride at a time.",
+    description:
+      "From optimized routes to real-time order updates, our delivery partners are equipped with the tools to ensure speed, safety, and satisfaction. Earn rewards and grow your delivery journey with us.",
+    bg: "url('https://t4.ftcdn.net/jpg/03/13/86/45/360_F_313864527_H5G41GU1oUoceZOh17eqfrwgDs5U5TNC.jpg')",
+  },
+];
+
+const Hero = () => {
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveIndex((prev) => (prev + 1) % roles.length);
+    }, 5000); // slide every 5 seconds
+
+    return () => clearInterval(interval);
+  }, []);
+
+  const current = roles[activeIndex];
+
   return (
-    <div className="flex flex-col items-center justify-center h-[85vh] bg-gradient-to-br from-slate-100 to-white text-center px-4">
-      {/* Headline */}
-      <motion.h1
-        className="text-4xl md:text-6xl font-extrabold text-slate-800 leading-tight"
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
+    <div className="relative h-[85vh] w-full overflow-hidden">
+      {/* Background image with overlay */}
+      <div
+        className="absolute inset-0 bg-cover bg-center transition-all duration-700"
+        style={{ backgroundImage: current.bg }}
       >
-        Empowering Vendors, Cutomers & Delivery Partners
-      </motion.h1>
+        <div className="absolute inset-0 bg-black bg-opacity-70" />
+      </div>
 
-      {/* Subheading */}
-      <motion.p
-        className="mt-4 text-slate-600 text-lg max-w-2xl"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.3, duration: 0.5 }}
-      >
-        A complete ecommerce platform connecting businesses, buyers, and riders
-        with smart, seamless apps for every role.
-      </motion.p>
-
-      {/* CTA Buttons */}
-      <motion.div
-        className="mt-8 flex flex-col md:flex-row gap-4"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.6 }}
-      >
-        <button
-          onClick={() => showVendorModal(true)}
-          className="bg-indigo-700 hover:bg-indigo-800 text-white px-6 py-3 rounded-xl text-lg flex items-center gap-2 transition-all duration-300"
+      {/* Animated Role Info */}
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={current.key}
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -30 }}
+          transition={{ duration: 0.8 }}
+          className="relative z-10 flex flex-col items-center justify-center h-full text-center px-6 text-white"
         >
-          <FaStore />
-          Join as Vendor
-        </button>
-
-        <button
-          onClick={() => showCustomerModal(true)}
-          className="bg-white border border-indigo-700 text-indigo-700 hover:bg-indigo-50 px-6 py-3 rounded-xl text-lg flex items-center gap-2 transition-all duration-300"
-        >
-          <FaShoppingBag />
-          Explore as Customer
-        </button>
-
-        <button
-          onClick={() => showDeliveryModal(true)}
-          className="bg-indigo-100 border border-indigo-700 text-indigo-700 hover:bg-indigo-200 px-6 py-3 rounded-xl text-lg flex items-center gap-2 transition-all duration-300"
-        >
-          <FaMotorcycle />
-          Join as Delivery Partner
-        </button>
-      </motion.div>
+          <h1 className="text-4xl md:text-6xl font-extrabold leading-tight">
+            {current.title}
+          </h1>
+          <p className="mt-3 text-xl md:text-2xl font-medium">
+            {current.subtitle}
+          </p>
+          <p className="mt-6 text-base md:text-lg max-w-3xl leading-relaxed">
+            {current.description}
+          </p>
+        </motion.div>
+      </AnimatePresence>
     </div>
   );
 };

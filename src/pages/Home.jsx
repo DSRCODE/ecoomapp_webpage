@@ -87,7 +87,7 @@ export default function Home() {
       <HeroIntro />
       <WhyChooseUs />
       <About />
-      <Testimonials />
+      {/* <Testimonials /> */}
       <AuthModal
         isOpen={showVendorModal}
         onClose={handleClose}

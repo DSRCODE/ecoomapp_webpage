@@ -10,7 +10,7 @@ export default function Footer() {
         {/* Brand Info */}
         <div>
           <h2 className="text-2xl font-bold tracking-wide text-[#fff] mb-3">
-            E-commWebpage
+            BidToBuy
           </h2>
           <p className="text-sm text-gray-400 mb-4 leading-relaxed">
             Empowering local businesses, delivery partners, and customers with a
@@ -19,7 +19,7 @@ export default function Footer() {
           <p className="text-sm text-gray-500">
             📍 Jaipur, Rajasthan, India <br />
             📞 +91-9782488408 <br />
-            📧 support@e-commWebpage.com
+            📧 support@bidTobuy.com
           </p>
         </div>
 
@@ -124,7 +124,7 @@ export default function Footer() {
 
       {/* Bottom Bar */}
       <div className="mt-4 border-t border-gray-700 pt-4 text-center text-xs text-gray-500">
-        © {new Date().getFullYear()} E-commWebpage — Built to Connect Vendors,
+        © {new Date().getFullYear()} BidToBuy — Built to Connect Vendors,
         Deliveries & Customers.
       </div>
     </footer>

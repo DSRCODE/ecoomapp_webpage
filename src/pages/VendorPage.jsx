@@ -1,37 +1,48 @@
 import { motion } from "framer-motion";
 import Slider from "react-slick";
-import { FaBoxOpen, FaChartLine, FaCheckCircle, FaClipboardList, FaDollarSign, FaHeadset, FaStore } from "react-icons/fa";
+import {
+  FaBoxOpen,
+  FaChartLine,
+  FaCheckCircle,
+  FaClipboardList,
+  FaDollarSign,
+  FaHeadset,
+  FaStore,
+} from "react-icons/fa";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
+import TimelineComponent from "../components/SetpDesign/TimelineComponent";
+
+
 export default function VendorPage() {
-const features = [
-  {
-    title: "Easy Product Listing",
-    icon: <FaBoxOpen className="text-indigo-600 text-2xl" />,
-    desc: "Upload and manage products in seconds with our user-friendly dashboard.",
-  },
-  {
-    title: "Order Management System",
-    icon: <FaClipboardList className="text-indigo-600 text-2xl" />,
-    desc: "Track orders from placement to delivery in real-time, hassle-free.",
-  },
-  {
-    title: "Real-Time Sales Tracking",
-    icon: <FaChartLine className="text-indigo-600 text-2xl" />,
-    desc: "Stay updated with your daily, weekly, and monthly sales insights.",
-  },
-  {
-    title: "Customer Communication Tools",
-    icon: <FaHeadset className="text-indigo-600 text-2xl" />,
-    desc: "Connect directly with buyers to improve trust and satisfaction.",
-  },
-  {
-    title: "Payout & Analytics Dashboard",
-    icon: <FaDollarSign className="text-indigo-600 text-2xl" />,
-    desc: "Get paid on time and track earnings with smart analytics.",
-  },
-];
+  const features = [
+    {
+      title: "Easy Product Listing",
+      icon: <FaBoxOpen className="text-indigo-600 text-2xl" />,
+      desc: "Upload and manage products in seconds with our user-friendly dashboard.",
+    },
+    {
+      title: "Order Management System",
+      icon: <FaClipboardList className="text-indigo-600 text-2xl" />,
+      desc: "Track orders from placement to delivery in real-time, hassle-free.",
+    },
+    {
+      title: "Real-Time Sales Tracking",
+      icon: <FaChartLine className="text-indigo-600 text-2xl" />,
+      desc: "Stay updated with your daily, weekly, and monthly sales insights.",
+    },
+    {
+      title: "Customer Communication Tools",
+      icon: <FaHeadset className="text-indigo-600 text-2xl" />,
+      desc: "Connect directly with buyers to improve trust and satisfaction.",
+    },
+    {
+      title: "Payout & Analytics Dashboard",
+      icon: <FaDollarSign className="text-indigo-600 text-2xl" />,
+      desc: "Get paid on time and track earnings with smart analytics.",
+    },
+  ];
 
   const steps = [
     "Download the E-commWeb Vendor App",
@@ -51,47 +62,56 @@ const features = [
   };
 
   return (
-    <div className="text-gray-800 bg-white dark:text-white dark:bg-[#0D0D0D]">
-      {/* HERO SECTION */}
-      <section className="pt-24 pb-16 px-6 text-center">
-        <motion.h1
-          initial={{ opacity: 0, y: -30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="text-4xl md:text-5xl font-bold text-[#012A56]"
-        >
-          E-commWeb Vendor App
-        </motion.h1>
-        <p className="mt-4 max-w-2xl mx-auto text-lg text-gray-600 dark:text-gray-300">
-          Empowering sellers to grow their business with intuitive tools, order
-          management, and real-time analytics.
-        </p>
-      </section>
+    <div className="text-gray-800 bg-white ">
+      <section className="px-6 py-16 max-w-7xl mx-auto">
+        <div className="flex flex-col-reverse md:flex-row items-center gap-12">
+          {/* Text Left */}
+          <div className="md:w-1/2 text-center md:text-left">
+            <motion.h1
+              initial={{ opacity: 0, y: -30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="text-4xl md:text-5xl font-bold text-[#012A56]"
+            >
+              E-commWeb Vendor App
+            </motion.h1>
+            <p className="mt-4 text-lg text-gray-600 ">
+              Empowering sellers to grow their business with intuitive tools,
+              order management, and real-time analytics. Manage your store,
+              track performance, and maximize reach — all from one powerful app.
+            </p>
+            <button
+              onClick={() => showVendorModal(true)}
+              className="bg-indigo-700 hover:bg-indigo-800 text-white px-6 py-3 rounded-xl text-lg flex items-center gap-2 mt-4 transition-all duration-300"
+            >
+              <FaStore />
+              Join as Vendor
+            </button>
+          </div>
 
-      {/* VIDEO/SLIDER SECTION */}
-      <section className="px-6 pb-16 max-w-4xl mx-auto">
-        <div>
-          <video
-            className="rounded-xl w-full shadow-lg"
-            controls
-            autoPlay
-            loop
-            poster="https://ntspl.co.in/blog/wp-content/uploads/2021/03/multivender-ecommerce-marketplace.jpg"
-          >
-            <source src="v.mp4" type="video/mp4" />
-            Your browser does not support the video tag.
-          </video>
+          {/* Video Right */}
+          <div className="md:w-1/2">
+            <video
+              className="rounded-xl w-full shadow-lg"
+              controls
+              autoPlay
+              loop
+              poster="https://ntspl.co.in/blog/wp-content/uploads/2021/03/multivender-ecommerce-marketplace.jpg"
+            >
+              <source src="v.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+          </div>
         </div>
-        {/* Add more slides if needed */}
       </section>
 
       {/* FEATURES SECTION */}
-      <section className="px-6 py-16 bg-[#f3f4f6] dark:bg-[#1A1A1A]">
+      <section className="px-6 py-16 bg-[#f3f4f6] ">
         <div className="max-w-5xl mx-auto text-center">
           <h2 className="text-4xl font-bold text-[#012A56] mb-4">
             Why Vendors Love Us
           </h2>
-          <p className="text-gray-600 dark:text-gray-300 mb-10">
+          <p className="text-gray-600  mb-10">
             Empowering local businesses with powerful tools to grow, sell, and
             succeed effortlessly.
           </p>
@@ -99,16 +119,14 @@ const features = [
             {features.map((item, index) => (
               <div
                 key={index}
-                className="bg-white dark:bg-[#222] p-5 rounded-xl shadow-md flex items-start gap-4"
+                className="bg-white  p-5 rounded-xl shadow-md flex items-start gap-4"
               >
                 {item.icon}
                 <div>
                   <h4 className="text-lg font-semibold text-[#012A56]">
                     {item.title}
                   </h4>
-                  <p className="text-gray-600 dark:text-gray-300 text-sm">
-                    {item.desc}
-                  </p>
+                  <p className="text-gray-600  text-sm">{item.desc}</p>
                 </div>
               </div>
             ))}
@@ -116,8 +134,12 @@ const features = [
         </div>
       </section>
 
+      <TimelineComponent />
+
+  
+
       {/* REGISTRATION STEPS SECTION */}
-      <section className="px-6 py-16 bg-white dark:bg-gray-900">
+      <section className="px-6 py-16 bg-white ">
         <div className="max-w-5xl mx-auto text-center">
           <h2 className="text-3xl font-bold text-[#012A56] mb-12">
             Get Started in 4 Easy Steps
@@ -135,9 +157,7 @@ const features = [
                 </div>
 
                 {/* Step Text */}
-                <p className="text-gray-700 dark:text-gray-300 max-w-[200px]">
-                  {step}
-                </p>
+                <p className="text-gray-700  max-w-[200px]">{step}</p>
               </div>
             ))}
 

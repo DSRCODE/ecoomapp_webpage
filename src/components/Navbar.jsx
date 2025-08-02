@@ -26,7 +26,7 @@ const Navbar = () => {
           onClick={() => navigate("/")}
         >
           <FaStore className="text-yellow-300" />
-          E-commWebpage
+          BidToBuy
         </motion.div>
 
         {/* Desktop Menu */}
