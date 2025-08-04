@@ -11,6 +11,8 @@ import ContactPage from "../pages/ContactPage";
 import VendorPage from "../pages/VendorPage";
 import CustomerPage from "../pages/CustomerPage";
 import DeliveryPage from "../pages/DeliveryPage";
+import PrivacyPolicy from "../pages/PrivacyPolicy";
+import TermsAndConditions from "../pages/TermsAndConditions";
 
 export default function AppRoutes() {
   return (
@@ -23,6 +25,8 @@ export default function AppRoutes() {
         <Route path="/delivery" element={<DeliveryPage />} />
         <Route path="/contact" element={<ContactPage />} />
       </Route>
+      <Route path="/privacy" element={<PrivacyPolicy />} />
+      <Route path="/terms" element={<TermsAndConditions />} />
 
       <Route path="*" element={<NotFound />} />
     </Routes>

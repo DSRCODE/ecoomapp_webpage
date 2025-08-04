@@ -1,5 +1,5 @@
 import { FaInstagram, FaLinkedin, FaSquareXTwitter } from "react-icons/fa6";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Footer() {
   const navigate = useNavigate();
@@ -9,7 +9,10 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-10">
         {/* Brand Info */}
         <div>
-          <h2 className="text-2xl font-bold tracking-wide text-[#fff] mb-3">
+          <h2
+            onClick={() => navigate("/")}
+            className="text-2xl font-bold tracking-wide text-[#fff] mb-3 cursor-pointer"
+          >
             BidToBuy
           </h2>
           <p className="text-sm text-gray-400 mb-4 leading-relaxed">
@@ -124,8 +127,19 @@ export default function Footer() {
 
       {/* Bottom Bar */}
       <div className="mt-4 border-t border-gray-700 pt-4 text-center text-xs text-gray-500">
-        © {new Date().getFullYear()} BidToBuy — Built to Connect Vendors,
-        Deliveries & Customers.
+        <p>
+          © {new Date().getFullYear()} BidToBuy — Built to Connect Vendors,
+          Deliveries & Customers.
+        </p>
+        <div className="mt-2 flex justify-center gap-4 text-blue-400 text-sm">
+          <Link to="/privacy" className="hover:underline hover:text-blue-500">
+            Privacy Policy
+          </Link>
+          |
+          <Link to="/terms" className="hover:underline hover:text-blue-500">
+            Terms & Conditions
+          </Link>
+        </div>
       </div>
     </footer>
   );
