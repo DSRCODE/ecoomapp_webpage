@@ -139,7 +139,7 @@ export default function VendorPage() {
   
 
       {/* REGISTRATION STEPS SECTION */}
-      <section className="px-6 py-16 bg-white ">
+      {/* <section className="px-6 py-16 bg-white ">
         <div className="max-w-5xl mx-auto text-center">
           <h2 className="text-3xl font-bold text-[#012A56] mb-12">
             Get Started in 4 Easy Steps
@@ -151,23 +151,20 @@ export default function VendorPage() {
                 key={index}
                 className="flex flex-col items-center text-center relative z-10"
               >
-                {/* Circle Number */}
                 <div className="w-12 h-12 rounded-full bg-[#012A56] text-white flex items-center justify-center text-lg font-bold mb-4 shadow-md">
                   {index + 1}
                 </div>
 
-                {/* Step Text */}
                 <p className="text-gray-700  max-w-[200px]">{step}</p>
               </div>
             ))}
 
-            {/* Connecting Line */}
             <div className="hidden md:block absolute top-6 left-0 right-0 h-1 bg-gray-300 z-0 mx-12">
               <div className="absolute left-0 top-0 h-1 bg-[#012A56] w-full z-0"></div>
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* CTA SECTION */}
       <section className="px-6 py-12 bg-[#f6f3ff] text-[#4B2DB3] text-center">

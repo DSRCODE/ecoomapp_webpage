@@ -18,7 +18,7 @@ const PrivacyPolicy = () => {
         </div>
 
         <p className="mb-4">
-          This Privacy Policy describes how BidToBuy ("we", "us", or "our")
+          This Privacy Policy describes how Bidzord ("we", "us", or "our")
           collects, uses, and discloses your personal information when you visit
           or make a purchase from our site.
         </p>
@@ -104,7 +104,7 @@ const PrivacyPolicy = () => {
           questions, please contact us at privacy@bidtobuy.com
         </p>
       </motion.div>
-      <Footer/>
+      <Footer />
     </>
   );
 };

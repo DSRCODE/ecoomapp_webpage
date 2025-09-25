@@ -19,7 +19,7 @@ const TermsAndConditions = () => {
         </div>
 
         <p className="mb-4">
-          These Terms & Conditions govern your access to and use of the BidToBuy
+          These Terms & Conditions govern your access to and use of the Bidzord
           platform. By using our services, you agree to be bound by these terms.
         </p>
 
@@ -58,7 +58,7 @@ const TermsAndConditions = () => {
         <h2 className="text-xl font-semibold mt-6">5. Intellectual Property</h2>
         <p className="mt-2">
           All content on the site, including logos, product images, and text,
-          are owned by BidToBuy or licensed to us. Unauthorized use is strictly
+          are owned by Bidzord or licensed to us. Unauthorized use is strictly
           prohibited.
         </p>
 

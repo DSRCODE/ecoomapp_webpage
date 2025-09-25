@@ -13,16 +13,16 @@ export default function Footer() {
             onClick={() => navigate("/")}
             className="text-2xl font-bold tracking-wide text-[#fff] mb-3 cursor-pointer"
           >
-            BidToBuy
+            Bidzord
           </h2>
           <p className="text-sm text-gray-400 mb-4 leading-relaxed">
             Empowering local businesses, delivery partners, and customers with a
             seamless e-commerce experience.
           </p>
           <p className="text-sm text-gray-500">
-            📍 Jaipur, Rajasthan, India <br />
-            📞 +91-9782488408 <br />
-            📧 support@bidTobuy.com
+            📍 Bemetara, Chhattisgarh, India <br />
+            📞 +91-9039791530 <br />
+            📧 admin@bidzord.com
           </p>
         </div>
 
@@ -128,7 +128,7 @@ export default function Footer() {
       {/* Bottom Bar */}
       <div className="mt-4 border-t border-gray-700 pt-4 text-center text-xs text-gray-500">
         <p>
-          © {new Date().getFullYear()} BidToBuy — Built to Connect Vendors,
+          © {new Date().getFullYear()} Bidzord — Built to Connect Vendors,
           Deliveries & Customers.
         </p>
         <div className="mt-2 flex justify-center gap-4 text-blue-400 text-sm">

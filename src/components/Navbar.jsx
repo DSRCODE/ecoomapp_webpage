@@ -1,10 +1,11 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaBullhorn, FaBars, FaTimes, FaStore } from "react-icons/fa";
 
 const Navbar = () => {
   const navigate = useNavigate();
+  const location = useLocation(); // 👈 get current route
   const [menuOpen, setMenuOpen] = useState(false);
 
   const navLinks = [
@@ -26,24 +27,39 @@ const Navbar = () => {
           onClick={() => navigate("/")}
         >
           <FaStore className="text-yellow-300" />
-          BidToBuy
+          Bidzord
         </motion.div>
 
         {/* Desktop Menu */}
         <ul className="hidden md:flex gap-8 font-medium">
-          {navLinks.map((link, i) => (
-            <motion.li
-              key={i}
-              className="relative group"
-              whileHover={{ scale: 1.05 }}
-              transition={{ type: "spring", stiffness: 300 }}
-            >
-              <Link to={link.path} className="hover:text-yellow-300 transition">
-                {link.name}
-              </Link>
-              <span className="absolute left-0 -bottom-1 w-0 h-0.5 bg-yellow-300 transition-all group-hover:w-full"></span>
-            </motion.li>
-          ))}
+          {navLinks.map((link, i) => {
+            const isActive = location.pathname === link.path;
+            return (
+              <motion.li
+                key={i}
+                className="relative group"
+                whileHover={{ scale: 1.05 }}
+                transition={{ type: "spring", stiffness: 300 }}
+              >
+                <Link
+                  to={link.path}
+                  className={`transition ${
+                    isActive
+                      ? "text-yellow-300 font-bold"
+                      : "hover:text-yellow-300"
+                  }`}
+                >
+                  {link.name}
+                </Link>
+                {/* underline for active link */}
+                <span
+                  className={`absolute left-0 -bottom-1 h-0.5 bg-yellow-300 transition-all ${
+                    isActive ? "w-full" : "w-0 group-hover:w-full"
+                  }`}
+                ></span>
+              </motion.li>
+            );
+          })}
         </ul>
 
         {/* Mobile Toggle */}
@@ -65,21 +81,28 @@ const Navbar = () => {
             transition={{ type: "tween", duration: 0.3 }}
             className="fixed top-0 right-0 w-full h-screen bg-white z-40 flex flex-col items-center justify-center gap-10 text-xl font-semibold text-gray-800"
           >
-            {navLinks.map((link, i) => (
-              <motion.div
-                key={i}
-                whileHover={{ scale: 1.05 }}
-                transition={{ type: "spring", stiffness: 300 }}
-              >
-                <Link
-                  to={link.path}
-                  onClick={() => setMenuOpen(false)}
-                  className="hover:text-blue-600"
+            {navLinks.map((link, i) => {
+              const isActive = location.pathname === link.path;
+              return (
+                <motion.div
+                  key={i}
+                  whileHover={{ scale: 1.05 }}
+                  transition={{ type: "spring", stiffness: 300 }}
                 >
-                  {link.name}
-                </Link>
-              </motion.div>
-            ))}
+                  <Link
+                    to={link.path}
+                    onClick={() => setMenuOpen(false)}
+                    className={`${
+                      isActive
+                        ? "text-blue-600 font-bold"
+                        : "hover:text-blue-600"
+                    }`}
+                  >
+                    {link.name}
+                  </Link>
+                </motion.div>
+              );
+            })}
           </motion.div>
         )}
       </AnimatePresence>
