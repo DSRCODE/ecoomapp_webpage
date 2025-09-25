@@ -32,22 +32,22 @@ export default function Footer() {
           <ul className="space-y-2 text-sm text-gray-300">
             <li
               className="hover:text-blue-400 cursor-pointer"
-              onClick={() => navigate("/vendor/register")}
+              onClick={() => navigate("/privacy-policy/vendor")}
             >
-              Register as Vendor
+              Privacy & Policy
             </li>
-            <li
+            {/* <li
               className="hover:text-blue-400 cursor-pointer"
               onClick={() => navigate("/vendor/dashboard")}
             >
-              Vendor Dashboard
-            </li>
-            <li
+              Terms & Conditions
+            </li> */}
+            {/* <li
               className="hover:text-blue-400 cursor-pointer"
               onClick={() => navigate("/vendor/support")}
             >
               Support
-            </li>
+            </li> */}
           </ul>
         </div>
 
@@ -59,21 +59,9 @@ export default function Footer() {
           <ul className="space-y-2 text-sm text-gray-300">
             <li
               className="hover:text-blue-400 cursor-pointer"
-              onClick={() => navigate("/delivery/join")}
+              onClick={() => navigate("/privacy-policy/delivery")}
             >
-              Become a Partner
-            </li>
-            <li
-              className="hover:text-blue-400 cursor-pointer"
-              onClick={() => navigate("/delivery/track")}
-            >
-              Track Orders
-            </li>
-            <li
-              className="hover:text-blue-400 cursor-pointer"
-              onClick={() => navigate("/delivery/help")}
-            >
-              Help Center
+              Privacy & Policy
             </li>
           </ul>
         </div>
@@ -86,21 +74,9 @@ export default function Footer() {
           <ul className="space-y-2 text-sm text-gray-300 mb-4">
             <li
               className="hover:text-blue-400 cursor-pointer"
-              onClick={() => navigate("/shop")}
+              onClick={() => navigate("/privacy-policy/customer")}
             >
-              Shop Now
-            </li>
-            <li
-              className="hover:text-blue-400 cursor-pointer"
-              onClick={() => navigate("/orders")}
-            >
-              My Orders
-            </li>
-            <li
-              className="hover:text-blue-400 cursor-pointer"
-              onClick={() => navigate("/support")}
-            >
-              Customer Support
+              Privacy & Policy
             </li>
           </ul>
 
@@ -131,7 +107,7 @@ export default function Footer() {
           © {new Date().getFullYear()} Bidzord — Built to Connect Vendors,
           Deliveries & Customers.
         </p>
-        <div className="mt-2 flex justify-center gap-4 text-blue-400 text-sm">
+        {/* <div className="mt-2 flex justify-center gap-4 text-blue-400 text-sm">
           <Link to="/privacy" className="hover:underline hover:text-blue-500">
             Privacy Policy
           </Link>
@@ -139,7 +115,7 @@ export default function Footer() {
           <Link to="/terms" className="hover:underline hover:text-blue-500">
             Terms & Conditions
           </Link>
-        </div>
+        </div> */}
       </div>
     </footer>
   );

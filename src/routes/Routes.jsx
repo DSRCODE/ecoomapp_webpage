@@ -25,7 +25,7 @@ export default function AppRoutes() {
         <Route path="/delivery" element={<DeliveryPage />} />
         <Route path="/contact" element={<ContactPage />} />
       </Route>
-      <Route path="/privacy" element={<PrivacyPolicy />} />
+      <Route path="/privacy-policy/:type" element={<PrivacyPolicy />} />
       <Route path="/terms" element={<TermsAndConditions />} />
 
       <Route path="*" element={<NotFound />} />
