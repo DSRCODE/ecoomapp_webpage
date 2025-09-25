@@ -105,7 +105,7 @@ export default function Footer() {
           </ul>
 
           {/* Social Icons */}
-          <div className="flex gap-4 text-2xl text-gray-400 mb-2">
+          {/* <div className="flex gap-4 text-2xl text-gray-400 mb-2">
             <a href="#" className="hover:text-pink-500">
               <FaInstagram />
             </a>
@@ -115,7 +115,7 @@ export default function Footer() {
             <a href="#" className="hover:text-white">
               <FaSquareXTwitter />
             </a>
-          </div>
+          </div> */}
           <button
             onClick={() => navigate("/register")}
             className="mt-2 text-sm px-4 py-2 rounded-full bg-[#7C3AED] hover:bg-blue-700 transition font-medium"

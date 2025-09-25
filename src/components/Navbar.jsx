@@ -26,7 +26,8 @@ const Navbar = () => {
           transition={{ duration: 0.5 }}
           onClick={() => navigate("/")}
         >
-          <FaStore className="text-yellow-300" />
+          <img src="./logo.png" alt="" className="h-10 w-10" />
+          {/* <FaStore className="text-yellow-300" /> */}
           Bidzord
         </motion.div>
 
