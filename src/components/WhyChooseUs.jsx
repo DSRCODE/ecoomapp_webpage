@@ -22,11 +22,12 @@ const WhyChooseUs = () => {
   return (
     <section className="bg-white py-16 px-6 text-center">
       <h2 className="text-4xl font-bold text-gray-800 mb-6">
-        Why Choose <span className="text-[#7C3AED]">e-commmWebpage</span>?
+        Why Choose <span className="text-[#7C3AED]">Bidzord</span>?
       </h2>
       <p className="text-gray-600 max-w-2xl mx-auto mb-12">
-        We connect vendors, customers, and delivery partners through a seamless
-        platform focused on trust, efficiency, and growth.
+        India’s First Platform Connecting Customers to Vendors & Service
+        Providers (Small/large scale Gst/NON Gst) with Orders-bids-leads and
+        Flexible Delivery options (Courier/Home delievary/Selfship).
       </p>
 
       <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">

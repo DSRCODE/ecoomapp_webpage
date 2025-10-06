@@ -57,9 +57,9 @@ export default function About() {
           </h2>
 
           <p className="text-lg text-gray-700 mb-4">
-            <span className="font-semibold">e-commWebpage</span> is a powerful
-            digital ecosystem designed to revolutionize interactions between
-            businesses, customers, and delivery partners in the eCommerce space.
+            <span className="font-semibold">Bidzord</span> is a powerful digital
+            ecosystem designed to revolutionize interactions between businesses,
+            customers, and delivery partners in the Bidzord space.
           </p>
 
           <p className="text-md text-gray-700 mb-6">

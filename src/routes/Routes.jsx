@@ -13,6 +13,9 @@ import CustomerPage from "../pages/CustomerPage";
 import DeliveryPage from "../pages/DeliveryPage";
 import PrivacyPolicy from "../pages/PrivacyPolicy";
 import TermsAndConditions from "../pages/TermsAndConditions";
+import ShippingPolicy from "../pages/ShippingPolicy";
+import ReturnCancellationRefundPolicy from "../pages/ReturnCancellationRefundPolicy";
+import PricingPolicy from "../pages/PricingPolicy";
 
 export default function AppRoutes() {
   return (
@@ -26,7 +29,10 @@ export default function AppRoutes() {
         <Route path="/contact" element={<ContactPage />} />
       </Route>
       <Route path="/privacy-policy/:type" element={<PrivacyPolicy />} />
-      <Route path="/terms" element={<TermsAndConditions />} />
+      <Route path="/terms/:type" element={<TermsAndConditions />} />
+      <Route path="/shipping/:type" element={<ShippingPolicy />} />
+      <Route path="/refund/:type" element={<ReturnCancellationRefundPolicy />} />
+      <Route path="/pricing/:type" element={<PricingPolicy />} />
 
       <Route path="*" element={<NotFound />} />
     </Routes>

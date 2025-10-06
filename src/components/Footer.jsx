@@ -15,12 +15,15 @@ export default function Footer() {
           >
             Bidzord
           </h2>
-          <p className="text-sm text-gray-400 mb-4 leading-relaxed">
+          <p className="text-sm text-gray-400 mb-3 leading-relaxed">
             Empowering local businesses, delivery partners, and customers with a
             seamless e-commerce experience.
           </p>
+          <p className="text-sm text-[#7C3AED] mb-1 font-semibold leading-relaxed">
+            RDS SERVICE AGENCY
+          </p>
           <p className="text-sm text-gray-500">
-            📍 Bemetara, Chhattisgarh, India <br />
+            📍 Ward-7, Mohbhatta Road Bemetara-491335, Chhattisgarh <br />
             📞 +91-9039791530 <br />
             📧 admin@bidzord.com
           </p>
@@ -36,18 +39,30 @@ export default function Footer() {
             >
               Privacy & Policy
             </li>
-            {/* <li
+            <li
               className="hover:text-blue-400 cursor-pointer"
-              onClick={() => navigate("/vendor/dashboard")}
+              onClick={() => navigate("/terms/vendor")}
             >
               Terms & Conditions
-            </li> */}
-            {/* <li
+            </li>
+            <li
               className="hover:text-blue-400 cursor-pointer"
-              onClick={() => navigate("/vendor/support")}
+              onClick={() => navigate("/shipping/vendor")}
             >
-              Support
-            </li> */}
+              Shipping Policy
+            </li>
+            <li
+              className="hover:text-blue-400 cursor-pointer"
+              onClick={() => navigate("/refund/vendor")}
+            >
+              Refund & Cancellation Policy
+            </li>
+            <li
+              className="hover:text-blue-400 cursor-pointer"
+              onClick={() => navigate("/pricing/vendor")}
+            >
+              Pricing Policy
+            </li>
           </ul>
         </div>
 
@@ -62,6 +77,30 @@ export default function Footer() {
               onClick={() => navigate("/privacy-policy/delivery")}
             >
               Privacy & Policy
+            </li>
+            <li
+              className="hover:text-blue-400 cursor-pointer"
+              onClick={() => navigate("/terms/delivery")}
+            >
+              Terms & Conditions
+            </li>
+            <li
+              className="hover:text-blue-400 cursor-pointer"
+              onClick={() => navigate("/shipping/delivery")}
+            >
+              Shipping Policy
+            </li>
+            {/* <li
+              className="hover:text-blue-400 cursor-pointer"
+              onClick={() => navigate("/refund/delivery")}
+            >
+              Refund & Cancellation Policy
+            </li> */}
+            <li
+              className="hover:text-blue-400 cursor-pointer"
+              onClick={() => navigate("/pricing/delivery")}
+            >
+              Pricing Policy
             </li>
           </ul>
         </div>
@@ -78,6 +117,30 @@ export default function Footer() {
             >
               Privacy & Policy
             </li>
+            <li
+              className="hover:text-blue-400 cursor-pointer"
+              onClick={() => navigate("/terms/customer")}
+            >
+              Terms & Conditions
+            </li>
+            {/* <li
+              className="hover:text-blue-400 cursor-pointer"
+              onClick={() => navigate("/shipping/customer")}
+            >
+              Shipping Policy
+            </li> */}
+            <li
+              className="hover:text-blue-400 cursor-pointer"
+              onClick={() => navigate("/refund/cutomer")}
+            >
+              Refund & Cancellation Policy
+            </li>
+            {/* <li
+              className="hover:text-blue-400 cursor-pointer"
+              onClick={() => navigate("/pricing/cutomer")}
+            >
+              Pricing Policy
+            </li> */}
           </ul>
 
           {/* Social Icons */}

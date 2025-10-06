@@ -38,7 +38,7 @@ const InfluencerOnboardingForm = () => {
           className="w-full px-4 py-2 border rounded-lg focus:outline-blue-500"
         />
         <textarea
-          placeholder="Why do you want to join e-commWebpage?"
+          placeholder="Why do you want to join Bidzord?"
           rows="3"
           className="w-full px-4 py-2 border rounded-lg focus:outline-blue-500"
         />

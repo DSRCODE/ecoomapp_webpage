@@ -10,7 +10,7 @@ export default function ContactPage() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          Connect With the e-commWebpage Team
+          Connect With the Bidzord Team
         </motion.h1>
         <motion.p
           className="text-gray-600 max-w-3xl mx-auto mb-10"

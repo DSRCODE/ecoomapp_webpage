@@ -27,7 +27,7 @@ const InfluencerPage = () => {
       </section>
 
       {/* Why Join Us */}
-      {/* Why Join e-commWebpage? */}
+      {/* Why Join Bidzord? */}
       <section className="py-16 px-4 bg-white">
         <div className="max-w-6xl mx-auto text-center">
           <motion.h2
@@ -36,7 +36,7 @@ const InfluencerPage = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            Why Join e-commWebpage?
+            Why Join Bidzord?
           </motion.h2>
           <motion.p
             className="text-gray-600 max-w-3xl mx-auto mb-10"
@@ -45,8 +45,8 @@ const InfluencerPage = () => {
             transition={{ delay: 0.2 }}
           >
             Whether you’re just starting out or you're an experienced creator,
-            e-commWebpage empowers you to grow your influence, get paid fairly,
-            and collaborate with trusted brands—big and small. Join a secure,
+            Bidzord empowers you to grow your influence, get paid fairly, and
+            collaborate with trusted brands—big and small. Join a secure,
             opportunity-rich, performance-based influencer network that values
             *you*.
           </motion.p>
@@ -74,8 +74,8 @@ const InfluencerPage = () => {
                 desc: "Your engagement and professionalism earn you bonuses. The better you perform, the more you earn — no middlemen.",
               },
               {
-                title: "e-commWebpage Growth Track",
-                desc: "Show consistency, and we’ll upgrade your status. Top performers become e-commWebpage Pros — our premium inner circle.",
+                title: "Bidzord Growth Track",
+                desc: "Show consistency, and we’ll upgrade your status. Top performers become Bidzord Pros — our premium inner circle.",
               },
             ].map((item, i) => (
               <motion.div
@@ -163,7 +163,7 @@ const InfluencerPage = () => {
         </div>
       </section>
 
-      {/* e-commWebpage Comunnity */}
+      {/* Bidzord Comunnity */}
       <section className="py-20 px-4 bg-white">
         <div className="max-w-4xl mx-auto text-center">
           <motion.h2
@@ -173,7 +173,7 @@ const InfluencerPage = () => {
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
           >
-            Become a Core Member of e-commWebpage
+            Become a Core Member of Bidzord
           </motion.h2>
 
           <motion.p
@@ -185,7 +185,7 @@ const InfluencerPage = () => {
           >
             Connect with us for upcoming opportunities and join the growing{" "}
             <span className="font-semibold text-blue-600">
-              e-commWebpage Community
+              Bidzord Community
             </span>
             . Your performance and engagement are constantly evaluated—work
             smart and we’ll ensure you get consistent collaborations based on
@@ -203,11 +203,9 @@ const InfluencerPage = () => {
             range of campaigns—from startups to big brands—so you're never stuck
             waiting for one deal. If you align with our values and deliver
             results, you'll be officially onboarded into the{" "}
-            <span className="font-semibold text-blue-600">
-              e-commWebpage tier
-            </span>{" "}
-            — giving you priority access to higher-paying gigs and long-term
-            brand partnerships.
+            <span className="font-semibold text-blue-600">Bidzord tier</span> —
+            giving you priority access to higher-paying gigs and long-term brand
+            partnerships.
           </motion.p>
 
           <motion.div
@@ -218,7 +216,7 @@ const InfluencerPage = () => {
             viewport={{ once: true }}
           >
             <button className="bg-blue-600 text-white px-6 py-3 rounded-full text-lg font-semibold shadow hover:bg-blue-700 transition">
-              Join e-commWebpage Now
+              Join Bidzord Now
             </button>
           </motion.div>
         </div>
