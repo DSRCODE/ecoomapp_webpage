@@ -14,51 +14,57 @@ import { useState } from "react";
 import { Modal, Form, Input, Button, Select } from "antd";
 import TimelineComponent from "../components/SetpDesign/TimelineComponent";
 import { IndianRupee } from "lucide-react";
+import swal from "sweetalert";
+
+const BASE_URL = "https://82.112.236.195/";
 
 const { Option } = Select;
 
 export default function VendorPage() {
+  const [form] = Form.useForm();
+
   const [isJoinModalVisible, setJoinModalVisible] = useState(false);
   const [isDownloadModalVisible, setDownloadModalVisible] = useState(false);
+  const [customCategory, setCustomCategory] = useState(false);
 
-const features = [
-  {
-    title: "Vendors Welcome: Local, National, GST & Non-GST",
-    icon: <FaBoxOpen className="text-indigo-600 text-2xl" />,
-    desc: "Open to all vendors, whether local, national, GST registered, or Non-GST. Everyone is welcome to grow with us.",
-  },
-  {
-    title:
-      "Zero Hassle, Quick Setup, Effortless Product Upload & Management with AI",
-    icon: <FaClipboardList className="text-indigo-600 text-2xl" />,
-    desc: "Set up your store quickly and manage products effortlessly using AI-powered tools.",
-  },
-  {
-    title: "Reliable Payments, Easy Policies, Instant Settlements",
-    icon: <FaChartLine className="text-indigo-600 text-2xl" />,
-    desc: "Enjoy secure payments, simple policies, and instant settlements without delays.",
-  },
-  {
-    title: "Save Money with Multiple Delivery Choices",
-    icon: <FaHeadset className="text-indigo-600 text-2xl" />,
-    desc: "Offer customers multiple delivery options while reducing costs and improving satisfaction.",
-  },
-  {
-    title: "Minimal Commission, Maximum Growth for Vendors",
-    icon: <IndianRupee className="text-indigo-600 text-2xl" />,
-    desc: "Pay minimal commission while accessing a platform designed to maximize your business growth.",
-  },
-  {
-    title: "Endless Opportunities Through Bids, Leads & Orders",
-    icon: <FaBoxOpen className="text-indigo-600 text-2xl" />,
-    desc: "Gain new orders and leads effortlessly with our bidding and order platform.",
-  },
-  {
-    title: "Joining Bonus: 5 Bid/Order Platform Fee Free",
-    icon: <IndianRupee className="text-indigo-600 text-2xl" />,
-    desc: "Get a special joining bonus—first 5 bids/orders platform fee-free.",
-  },
-];
+  const features = [
+    {
+      title: "Vendors Welcome: Local, National, GST & Non-GST",
+      icon: <FaBoxOpen className="text-indigo-600 text-2xl" />,
+      desc: "Open to all vendors, whether local, national, GST registered, or Non-GST. Everyone is welcome to grow with us.",
+    },
+    {
+      title:
+        "Zero Hassle, Quick Setup, Effortless Product Upload & Management with AI",
+      icon: <FaClipboardList className="text-indigo-600 text-2xl" />,
+      desc: "Set up your store quickly and manage products effortlessly using AI-powered tools.",
+    },
+    {
+      title: "Reliable Payments, Easy Policies, Instant Settlements",
+      icon: <FaChartLine className="text-indigo-600 text-2xl" />,
+      desc: "Enjoy secure payments, simple policies, and instant settlements without delays.",
+    },
+    {
+      title: "Save Money with Multiple Delivery Choices",
+      icon: <FaHeadset className="text-indigo-600 text-2xl" />,
+      desc: "Offer customers multiple delivery options while reducing costs and improving satisfaction.",
+    },
+    {
+      title: "Minimal Commission, Maximum Growth for Vendors",
+      icon: <IndianRupee className="text-indigo-600 text-2xl" />,
+      desc: "Pay minimal commission while accessing a platform designed to maximize your business growth.",
+    },
+    {
+      title: "Endless Opportunities Through Bids, Leads & Orders",
+      icon: <FaBoxOpen className="text-indigo-600 text-2xl" />,
+      desc: "Gain new orders and leads effortlessly with our bidding and order platform.",
+    },
+    {
+      title: "Joining Bonus: 5 Bid/Order Platform Fee Free",
+      icon: <IndianRupee className="text-indigo-600 text-2xl" />,
+      desc: "Get a special joining bonus—first 5 bids/orders platform fee-free.",
+    },
+  ];
 
   const steps = [
     "Download the Bidzord Vendor App",
@@ -68,13 +74,47 @@ const features = [
   ];
 
   // Form submit
-  const handleJoinSubmit = (values) => {
-    console.log("Form submitted:", values);
-    setJoinModalVisible(false);
-    Modal.success({
-      title: "Form submitted!",
-      content: "Thank you for your interest. We'll contact you soon.",
-    });
+  const handleJoinSubmit = async (values) => {
+    // Determine final category
+    const finalCategory =
+      values.category === "other" ? values.customCategory : values.category;
+
+    const payload = {
+      user_type: "vendor",
+      business_name: values.businessName || "",
+      contact_person_name: values.name || "",
+      mobile_number: values.mobile || "",
+      email: values.email || "",
+      gstin: values.gstin || "",
+      product_category: finalCategory || "",
+      description: values.description || "",
+    };
+
+    try {
+      const response = await fetch("https://82.112.236.195/api/register-form", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      if (!response.ok)
+        throw new Error(`HTTP error! Status: ${response.status}`);
+
+      form.resetFields();
+      setJoinModalVisible(false);
+      swal(
+        "Success!",
+        "Thank you for your interest. We'll contact you soon.",
+        "success"
+      );
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      swal(
+        "Error!",
+        "There was an error submitting the form. Please try again.",
+        "error"
+      );
+    }
   };
 
   return (
@@ -207,77 +247,46 @@ const features = [
       >
         <Form
           layout="vertical"
+          form={form}
           onFinish={handleJoinSubmit}
           className="space-y-4"
         >
           <Form.Item
-            label="Business Name"
-            name="businessName"
-            rules={[
-              { required: true, message: "Please enter your business name" },
-            ]}
+            label="Contact Person Name"
+            name="name"
+            rules={[{ required: true, message: "Please enter your name" }]}
           >
-            <Input
-              placeholder="Business Name"
-              className="rounded-lg border-gray-300 focus:border-indigo-500 focus:ring focus:ring-indigo-200"
-            />
+            <Input placeholder="Your Name" />
           </Form.Item>
 
-          {/* <Form.Item
-            label="Contact Person Name"
-            name="contactName"
-            rules={[
-              { required: true, message: "Please enter contact person name" },
-            ]}
-          >
-            <Input
-              placeholder="Contact Person Name"
-              className="rounded-lg border-gray-300 focus:border-indigo-500 focus:ring focus:ring-indigo-200"
-            />
-          </Form.Item> */}
-
           <Form.Item
-            label="Mobile / WhatsApp Number"
+            label="Mobile Number"
             name="mobile"
             rules={[{ required: true, message: "Please enter mobile number" }]}
           >
-            <Input
-              placeholder="Mobile / WhatsApp Number"
-              className="rounded-lg border-gray-300 focus:border-indigo-500 focus:ring focus:ring-indigo-200"
-            />
+            <Input placeholder="Mobile Number" />
           </Form.Item>
 
-          <Form.Item
-            label="Email ID"
-            name="email"
-            rules={[
-              { message: "Please enter email" },
-              { type: "email", message: "Enter a valid email" },
-            ]}
-          >
-            <Input
-              placeholder="Email ID"
-              className="rounded-lg border-gray-300 focus:border-indigo-500 focus:ring focus:ring-indigo-200"
-            />
+          <Form.Item label="Business Name" name="businessName">
+            <Input placeholder="Business Name (Optional)" />
           </Form.Item>
 
-          <Form.Item label="GSTIN (optional)" name="gstin">
-            <Input
-              placeholder="GSTIN or select Non-GST vendor"
-              className="rounded-lg border-gray-300 focus:border-indigo-500 focus:ring focus:ring-indigo-200"
-            />
+          <Form.Item label="Email" name="email">
+            <Input placeholder="Email (Optional)" />
+          </Form.Item>
+
+          <Form.Item label="GSTIN" name="gstin">
+            <Input placeholder="GSTIN (Optional)" />
           </Form.Item>
 
           <Form.Item
             label="Product Category"
             name="category"
-            rules={[
-              { message: "Please select product category" },
-            ]}
+            rules={[{ required: false }]}
           >
             <Select
               placeholder="Select Product Category"
-              className="rounded-lg"
+              onChange={(value) => setCustomCategory(value === "other")}
             >
               <Option value="fashion">Fashion</Option>
               <Option value="electronics">Electronics</Option>
@@ -287,19 +296,25 @@ const features = [
             </Select>
           </Form.Item>
 
-          <Form.Item>
-            <Button
-              type="primary"
-              htmlType="submit"
-              block
-              className="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-lg py-3 text-lg transition-all"
+          {customCategory && (
+            <Form.Item
+              label="Enter Product Category"
+              name="customCategory"
+              rules={[{ required: true, message: "Please enter category" }]}
             >
+              <Input placeholder="Enter your category" />
+            </Form.Item>
+          )}
+
+          <Form.Item label="Description" name="description">
+            <Input.TextArea placeholder="Description (Optional)" rows={3} />
+          </Form.Item>
+
+          <Form.Item>
+            <Button type="primary" htmlType="submit" block>
               Submit
             </Button>
           </Form.Item>
-          <div className="text-center text-gray-500 text-sm">
-            By submitting, you agree to our terms & conditions.
-          </div>
         </Form>
       </Modal>
 

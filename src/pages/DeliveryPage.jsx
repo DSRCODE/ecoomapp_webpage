@@ -2,9 +2,13 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { FaMotorcycle, FaCheckCircle } from "react-icons/fa";
 import { Modal, Input, Button, Form } from "antd";
+import swal from "sweetalert";
 import SnakeTimeline from "../components/SetpDesign/SnakeTimeline";
 
+const BASE_URL = "https://82.112.236.195/";
+
 export default function DeliveryPage() {
+  const [form] = Form.useForm();
   const [isJoinModalVisible, setJoinModalVisible] = useState(false);
   const [isDownloadModalVisible, setDownloadModalVisible] = useState(false);
 
@@ -34,14 +38,43 @@ export default function DeliveryPage() {
     "Deliver and earn instantly",
   ];
 
-  // Form submit
-  const handleJoinSubmit = (values) => {
-    console.log("Form submitted:", values);
-    setJoinModalVisible(false);
-    Modal.success({
-      title: "Form submitted!",
-      content: "Thank you for your interest. We'll contact you soon.",
-    });
+  const handleJoinSubmit = async (values) => {
+    const payload = {
+      user_type: "delivery",
+      contact_person_name: values.name || "",
+      mobile_number: values.mobile || "",
+      email: values.email || "",
+      description: values.description || "",
+    };
+
+    try {
+      const response = await fetch(`${BASE_URL}api/register-form`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      if (!response.ok)
+        throw new Error(`HTTP error! Status: ${response.status}`);
+
+      // Reset form fields
+      form.resetFields();
+      setJoinModalVisible(false);
+
+      // Success swal
+      swal(
+        "Success!",
+        "Thank you for your interest. We'll contact you soon.",
+        "success"
+      );
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      swal(
+        "Error!",
+        "There was an error submitting the form. Please try again.",
+        "error"
+      );
+    }
   };
 
   return (
@@ -74,9 +107,7 @@ export default function DeliveryPage() {
             </motion.h1>
             <p className="mt-4 text-lg text-gray-800 ">
               Deliver packages faster, safer, and smarter with our
-              rider-friendly platform. Track orders in real-time, optimize
-              delivery routes, and boost your efficiency — all from a single
-              dashboard.
+              rider-friendly platform.
             </p>
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-start gap-4 mt-4">
               <button
@@ -127,20 +158,39 @@ export default function DeliveryPage() {
       {/* STEPS */}
       <SnakeTimeline />
 
-      {/* Join as Delivery Partner Modal */}
+      {/* Join Modal */}
       <Modal
-        title="Fill free to get more information"
+        title={
+          <div className="text-center">
+            <h2 className="text-2xl font-bold text-indigo-700">
+              Fill free to get more information
+            </h2>
+            <p className="text-sm text-gray-500 mt-1">
+              Become a Delivery Partner & grow with us
+            </p>
+          </div>
+        }
         open={isJoinModalVisible}
         onCancel={() => setJoinModalVisible(false)}
         footer={null}
+        centered
+        className="rounded-xl"
       >
-        <Form layout="vertical" onFinish={handleJoinSubmit}>
+        <Form
+          layout="vertical"
+          form={form}
+          onFinish={handleJoinSubmit}
+          className="space-y-4"
+        >
           <Form.Item
             label="Contact Name"
             name="name"
             rules={[{ required: true, message: "Please enter your name" }]}
           >
-            <Input placeholder="Your Name" />
+            <Input
+              placeholder="Your Name"
+              className="rounded-lg border-gray-300 focus:border-indigo-500 focus:ring focus:ring-indigo-200"
+            />
           </Form.Item>
 
           <Form.Item
@@ -150,40 +200,85 @@ export default function DeliveryPage() {
               { required: true, message: "Please enter your mobile number" },
             ]}
           >
-            <Input placeholder="Mobile / WhatsApp Number" />
+            <Input
+              placeholder="Mobile / WhatsApp Number"
+              className="rounded-lg border-gray-300 focus:border-indigo-500 focus:ring focus:ring-indigo-200"
+            />
           </Form.Item>
 
           <Form.Item
             label="Email"
             name="email"
             rules={[
-              { required: true, message: "Please enter your email" },
+              { message: "Please enter your email" },
               { type: "email", message: "Enter a valid email" },
             ]}
           >
-            <Input placeholder="Email" />
+            <Input
+              placeholder="Email"
+              className="rounded-lg border-gray-300 focus:border-indigo-500 focus:ring focus:ring-indigo-200"
+            />
+          </Form.Item>
+
+          <Form.Item
+            label="Description"
+            name="description"
+            rules={[{ message: "Please enter a description" }]}
+          >
+            <Input.TextArea
+              placeholder="Description"
+              className="rounded-lg border-gray-300 focus:border-indigo-500 focus:ring focus:ring-indigo-200"
+              rows={3}
+            />
           </Form.Item>
 
           <Form.Item>
-            <Button type="primary" htmlType="submit" block>
+            <Button
+              type="primary"
+              htmlType="submit"
+              block
+              className="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-lg py-3 text-lg transition-all"
+            >
               Submit
             </Button>
           </Form.Item>
+
+          <div className="text-center text-gray-500 text-sm">
+            By submitting, you agree to our terms & conditions.
+          </div>
         </Form>
       </Modal>
 
       {/* Download App Modal */}
       <Modal
-        title="Coming Soon"
+        title={
+          <div className="text-center">
+            <h2 className="text-2xl font-bold text-indigo-700">Coming Soon</h2>
+            <p className="text-sm text-gray-500 mt-1">
+              The delivery app will be available soon. Stay tuned!
+            </p>
+          </div>
+        }
         open={isDownloadModalVisible}
         onCancel={() => setDownloadModalVisible(false)}
         footer={[
-          <Button key="close" onClick={() => setDownloadModalVisible(false)}>
+          <Button
+            key="close"
+            onClick={() => setDownloadModalVisible(false)}
+            className="rounded-lg border border-gray-300 hover:bg-gray-100"
+          >
             Close
           </Button>,
         ]}
+        centered
+        className="rounded-xl"
       >
-        <p>The delivery app will be available soon. Stay tuned!</p>
+        <div className="text-center text-gray-700 mt-2">
+          <p>
+            Soon you will be able to download our delivery app and start
+            delivering with ease.
+          </p>
+        </div>
       </Modal>
     </div>
   );

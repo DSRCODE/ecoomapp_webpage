@@ -4,9 +4,15 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { useState } from "react";
 import { Modal, Form, Input, Button } from "antd";
+import swal from "sweetalert";
+
 import ZigZagSteps from "../components/ZigZagSteps";
 
+const BASE_URL = "https://82.112.236.195/";
+
 export default function CustomerPage() {
+  const [form] = Form.useForm();
+
   const [isJoinModalVisible, setJoinModalVisible] = useState(false);
   const [isDownloadModalVisible, setDownloadModalVisible] = useState(false);
 
@@ -50,13 +56,43 @@ export default function CustomerPage() {
   ];
 
   // Form submit
-  const handleJoinSubmit = (values) => {
-    console.log("Form submitted:", values);
-    setJoinModalVisible(false);
-    Modal.success({
-      title: "Form submitted!",
-      content: "Thank you for your interest. We'll contact you soon.",
-    });
+  const handleJoinSubmit = async (values) => {
+    const payload = {
+      user_type: "customer",
+      name: values.name || "",
+      mobile_number: values.mobile || "",
+      email: values.email || "",
+      description: values.description || "",
+    };
+
+    try {
+      const response = await fetch(`${BASE_URL}api/register-form`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      if (!response.ok)
+        throw new Error(`HTTP error! Status: ${response.status}`);
+
+      // Reset form fields
+      form.resetFields();
+      setJoinModalVisible(false);
+
+      // Success swal
+      swal(
+        "Success!",
+        "Thank you for your interest. We'll contact you soon.",
+        "success"
+      );
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      swal(
+        "Error!",
+        "There was an error submitting the form. Please try again.",
+        "error"
+      );
+    }
   };
 
   return (
@@ -141,32 +177,38 @@ export default function CustomerPage() {
         </section>
 
         {/* STEPS */}
-        <section className="px-6 py-16 bg-white ">
+        {/* STEPS */}
+        <section className="px-6 py-16 bg-white">
           <div className="max-w-5xl mx-auto text-center">
             <h2 className="text-3xl font-bold text-[#14532d] mb-12">
               Get Started in 4 Easy Steps
             </h2>
-            <div className="flex flex-col md:flex-row items-center justify-between gap-6 relative">
+            <div className="relative flex flex-col md:flex-row items-center justify-between gap-6">
+              {/* Progress line for desktop */}
+              <div className="hidden md:block absolute top-6 left-12 right-12 h-1 bg-gray-300 z-0">
+                <div className="absolute left-0 top-0 h-1 bg-[#14532d] w-full z-0" />
+              </div>
+
               {steps.map((step, index) => (
                 <div
                   key={index}
                   className="flex flex-col items-center text-center relative z-10"
                 >
+                  {/* Step circle */}
                   <div className="w-12 h-12 rounded-full bg-[#14532d] text-white flex items-center justify-center text-lg font-bold mb-4 shadow-md">
                     {index + 1}
                   </div>
-                  <p className="text-gray-700  max-w-[200px]">{step}</p>
+                  {/* Step text */}
+                  <p className="text-gray-700 max-w-[200px]">{step}</p>
                 </div>
               ))}
-              <div className="hidden md:block absolute top-6 left-0 right-0 h-1 bg-gray-300 z-0 mx-12">
-                <div className="absolute left-0 top-0 h-1 bg-[#14532d] w-full z-0" />
-              </div>
             </div>
           </div>
         </section>
       </div>
 
       {/* JOIN MODAL */}
+
       <Modal
         title={
           <div className="text-center">
@@ -189,11 +231,12 @@ export default function CustomerPage() {
       >
         <Form
           layout="vertical"
+          form={form}
           onFinish={handleJoinSubmit}
           className="space-y-4"
         >
           <Form.Item
-            label="Name"
+            label="Contact Name"
             name="name"
             rules={[{ required: true, message: "Please enter your name" }]}
           >
@@ -204,29 +247,41 @@ export default function CustomerPage() {
           </Form.Item>
 
           <Form.Item
-            label="Mobile Number"
+            label="Mobile / WhatsApp Number"
             name="mobile"
             rules={[
               { required: true, message: "Please enter your mobile number" },
             ]}
           >
             <Input
-              placeholder="Mobile Number"
+              placeholder="Mobile / WhatsApp Number"
               className="rounded-lg border-gray-300 focus:border-indigo-500 focus:ring focus:ring-indigo-200"
             />
           </Form.Item>
 
           <Form.Item
-            label="Email ID"
+            label="Email"
             name="email"
             rules={[
-              { required: true, message: "Please enter your email" },
+              { message: "Please enter your email" },
               { type: "email", message: "Enter a valid email" },
             ]}
           >
             <Input
-              placeholder="Email ID"
+              placeholder="Email"
               className="rounded-lg border-gray-300 focus:border-indigo-500 focus:ring focus:ring-indigo-200"
+            />
+          </Form.Item>
+
+          <Form.Item
+            label="Description"
+            name="description"
+            rules={[{ message: "Please enter a description" }]}
+          >
+            <Input.TextArea
+              placeholder="Description"
+              className="rounded-lg border-gray-300 focus:border-indigo-500 focus:ring focus:ring-indigo-200"
+              rows={3}
             />
           </Form.Item>
 

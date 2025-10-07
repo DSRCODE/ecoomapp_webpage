@@ -28,11 +28,8 @@ export default function AppRoutes() {
         <Route path="/delivery" element={<DeliveryPage />} />
         <Route path="/contact" element={<ContactPage />} />
       </Route>
-      <Route path="/privacy-policy/:type" element={<PrivacyPolicy />} />
-      <Route path="/terms/:type" element={<TermsAndConditions />} />
-      <Route path="/shipping/:type" element={<ShippingPolicy />} />
-      <Route path="/refund/:type" element={<ReturnCancellationRefundPolicy />} />
-      <Route path="/pricing/:type" element={<PricingPolicy />} />
+      <Route path="/:cat/:type" element={<PrivacyPolicy />} />
+    
 
       <Route path="*" element={<NotFound />} />
     </Routes>

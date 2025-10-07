@@ -4,23 +4,28 @@ import { motion } from "framer-motion";
 const steps = [
   {
     id: 1,
-    title: "What is Lorem Ipsum?",
-    text: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+    title: "Download the Bidzord Delivery App",
+    text: "Get the app from the Play Store or App Store and install it on your smartphone.",
   },
   {
     id: 2,
-    title: "Why use Lorem Ipsum?",
-    text: "It is a long established fact that a reader will be distracted.",
+    title: "Register Your Account",
+    text: "Sign up as a delivery partner by providing your name, mobile number, and required documents.",
   },
   {
     id: 3,
-    title: "Where does it come from?",
-    text: "Contrary to popular belief, Lorem Ipsum is not simply random text.",
+    title: "Choose Delivery Slots",
+    text: "Select your preferred working hours and delivery slots according to your convenience.",
   },
   {
     id: 4,
-    title: "Where can I get some?",
-    text: "There are many variations of passages of Lorem Ipsum available.",
+    title: "Accept Nearby Deliveries",
+    text: "Receive delivery requests nearby and accept the tasks you want to complete.",
+  },
+  {
+    id: 5,
+    title: "Deliver and Earn",
+    text: "Complete deliveries safely and earn instantly. Track your earnings directly in the app.",
   },
 ];
 
@@ -28,7 +33,7 @@ const Timeline = () => {
   return (
     <div className="relative flex flex-col items-center py-16 px-6 bg-white">
       <h2 className="text-3xl font-bold text-center mb-12 text-[#14532d]">
-        Our Few Process
+        How to Use Bidzord Delivery App
       </h2>
 
       <div className="relative w-full max-w-5xl mx-auto">

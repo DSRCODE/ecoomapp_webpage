@@ -8,10 +8,10 @@ import { SpinnerLoader } from "../components/SpinnerLoader";
 
 const BASE_URL = "https://82.112.236.195/";
 
-async function fetchPrivacyPolicy(type) {
+async function fetchPrivacyPolicy({type, cat}) {
   try {
     const response = await fetch(
-      `${BASE_URL}admin/cms-page/privacy-policy/${type}`,
+      `${BASE_URL}admin/cms-page/${cat}/${type}`,
       {
         method: "GET",
         headers: {
@@ -33,12 +33,14 @@ async function fetchPrivacyPolicy(type) {
 }
 
 const PrivacyPolicy = () => {
-  const { type } = useParams(); // vendor | delivery | customer etc.
+  const { cat,type } = useParams(); // vendor | delivery | customer etc.
   const [policy, setPolicy] = useState(null);
+
+  console.log(cat)
 
   useEffect(() => {
     if (type) {
-      fetchPrivacyPolicy(type).then((data) => {
+      fetchPrivacyPolicy({type, cat}).then((data) => {
         if (data) setPolicy(data);
       });
     }
@@ -62,7 +64,7 @@ const PrivacyPolicy = () => {
             <FaHome /> Home
           </Link>
           <FaChevronRight className="mx-2" />
-          <span className="capitalize">{type} Privacy Policy</span>
+          <span className="capitalize">{type} {cat}</span>
         </div>
 
         {/* Header */}
@@ -71,7 +73,7 @@ const PrivacyPolicy = () => {
             <FaShieldAlt className="text-blue-600 text-2xl" />
           </div>
           <h1 className="text-3xl md:text-4xl font-extrabold text-gray-900 capitalize">
-            Privacy Policy – {type}
+            {cat} – {type}
           </h1>
         </div>
 
